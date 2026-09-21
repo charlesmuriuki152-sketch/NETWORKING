@@ -1,0 +1,467 @@
+# Network Fundamentals — Practical Lab
+
+## Lab Overview
+
+This practical is part of my **CYBERSECURITY MISSION 2028** and supports the Networking Basics foundation.
+
+The purpose of this lab was to apply the networking concepts studied in the theory section by inspecting my Linux system's network configuration and testing basic network functionality.
+
+I used the Linux command line to examine network interfaces, IP addressing, routing, the default gateway, loopback communication, and network connectivity.
+
+---
+
+# 1. Lab Objectives
+
+The objectives of this practical were to:
+
+* Identify network interfaces on a Linux system
+* Identify IPv4 and IPv6 addresses
+* Identify MAC addresses
+* Identify the loopback interface
+* Check interface state
+* Inspect the routing table
+* Identify the default gateway
+* Test loopback connectivity
+* Understand how Linux determines where network traffic should go
+* Inspect network sockets and listening services
+* Connect the practical observations to cybersecurity
+
+---
+
+# 2. Environment
+
+## Operating System
+
+**Kali Linux**
+
+## Environment
+
+**Linux terminal environment**
+
+## Main Interface Observed
+
+```text
+eth0
+```
+
+## Loopback Interface
+
+```text
+lo
+```
+
+---
+
+# 3. Practical 1 — Inspect Network Interfaces
+
+## Command
+
+```bash
+ip addr
+```
+
+## Purpose
+
+The `ip addr` command displays network interfaces and their addressing information.
+
+I used it to inspect:
+
+* Network interfaces
+* IPv4 addresses
+* IPv6 addresses
+* MAC addresses
+* Interface state
+* The loopback interface
+
+## Observation
+
+The system displayed the loopback interface:
+
+```text
+lo
+```
+
+with the IPv4 loopback address:
+
+```text
+127.0.0.1
+```
+
+The system also displayed the active network interface:
+
+```text
+eth0
+```
+
+with its assigned network information.
+
+## What I Learned
+
+A Linux computer can have multiple network interfaces.
+
+The `lo` interface is used for communication within the same host, while `eth0` represents a network interface used for network connectivity in my current Linux environment.
+
+---
+
+# 4. Practical 2 — Inspect Network Interface Information
+
+## Command
+
+```bash
+ip link
+```
+
+## Purpose
+
+The `ip link` command displays information about network interfaces at the link layer.
+
+It can show:
+
+* Interface names
+* Interface state
+* MAC addresses
+* Link-layer information
+
+## What I Learned
+
+A network interface is the communication point between a system and a network.
+
+The command also helped me understand the difference between an interface being present and its operational state.
+
+---
+
+# 5. Practical 3 — Inspect the Routing Table
+
+## Command
+
+```bash
+ip route
+```
+
+## Observation
+
+My Linux environment displayed a route similar to:
+
+```text
+default via 172.18.32.1 dev eth0
+172.18.32.0/20 dev eth0
+```
+
+## Interpretation
+
+The first line represents the default route:
+
+```text
+default via 172.18.32.1 dev eth0
+```
+
+This means that traffic that does not have a more specific route can be forwarded through:
+
+```text
+172.18.32.1
+```
+
+using:
+
+```text
+eth0
+```
+
+The second route identifies the directly connected network:
+
+```text
+172.18.32.0/20
+```
+
+## What I Learned
+
+The routing table tells Linux where network traffic should be sent.
+
+I learned that the default gateway is important when communicating with destinations outside the directly connected network.
+
+---
+
+# 6. Practical 4 — Test the Loopback Interface
+
+## Command
+
+```bash
+ping -c 4 127.0.0.1
+```
+
+## Purpose
+
+This command tests communication with the local host using the IPv4 loopback address.
+
+```text
+127.0.0.1
+```
+
+represents the same computer on which the command is being executed.
+
+## What I Learned
+
+Traffic sent to `127.0.0.1` is local to the host.
+
+It does not need to travel to another physical device on the network.
+
+The successful loopback test demonstrated that the local system could respond to ICMP requests directed at itself.
+
+---
+
+# 7. Practical 5 — Test Network Connectivity
+
+## Command
+
+```bash
+ping -c 4 <destination>
+```
+
+I used `ping` as a basic network diagnostic tool.
+
+During troubleshooting, I also tested network destinations and observed that connectivity and DNS resolution are separate concepts.
+
+For example, a system may have a routing path while still experiencing problems resolving domain names.
+
+## What I Learned
+
+`ping` can help investigate:
+
+* Reachability
+* Response time
+* Packet loss
+* ICMP behavior
+
+However, a failed ping does not automatically prove that a system is offline because ICMP traffic may be blocked or filtered.
+
+---
+
+# 8. Practical 6 — Inspect Listening Network Services
+
+## Command
+
+```bash
+ss -tuln
+```
+
+## Purpose
+
+This command displays listening TCP and UDP sockets using numeric addresses and ports.
+
+The options mean:
+
+```text
+-t    TCP
+-u    UDP
+-l    Listening
+-n    Numeric output
+```
+
+## Additional Command
+
+```bash
+ss -tulpn
+```
+
+The `-p` option can provide information about the processes associated with sockets when the necessary permissions are available.
+
+## What I Learned
+
+A service that is listening is waiting for incoming network connections.
+
+Listening ports are important from a cybersecurity perspective because network-accessible services contribute to a system's attack surface.
+
+---
+
+# 9. Practical Findings
+
+During this practical I was able to investigate several important parts of my Linux network configuration.
+
+| Area                 | Command                   | What I Investigated               |
+| -------------------- | ------------------------- | --------------------------------- |
+| Network interfaces   | `ip addr`                 | Interfaces and IP addresses       |
+| Link information     | `ip link`                 | Interface state and MAC addresses |
+| Routing              | `ip route`                | Routes and default gateway        |
+| Local connectivity   | `ping -c 4 127.0.0.1`     | Loopback communication            |
+| Network connectivity | `ping -c 4 <destination>` | Basic reachability                |
+| Listening services   | `ss -tuln`                | Listening TCP/UDP ports           |
+| Processes            | `ss -tulpn`               | Processes associated with sockets |
+
+---
+
+# 10. Cybersecurity Connection
+
+This practical demonstrated why networking knowledge is important for cybersecurity engineering.
+
+A security professional needs to understand:
+
+```text
+What is connected?
+        ↓
+What IP addresses are assigned?
+        ↓
+Which interfaces are active?
+        ↓
+Where can traffic go?
+        ↓
+What is the default gateway?
+        ↓
+Which ports are listening?
+        ↓
+Which services are exposed?
+```
+
+These questions are relevant to:
+
+* Network security
+* Security monitoring
+* Incident response
+* Network reconnaissance
+* Attack-surface analysis
+* Vulnerability assessment
+* Firewall configuration
+* Penetration testing
+* Security engineering
+
+---
+
+# 11. Security Observation
+
+One important cybersecurity lesson from this practical is that **network visibility is a security skill**.
+
+Before attempting to secure or investigate a system, I need to understand its network configuration.
+
+For example:
+
+```bash
+ip addr
+```
+
+can show what interfaces and addresses exist.
+
+```bash
+ip route
+```
+
+can show how the system reaches other networks.
+
+```bash
+ss -tulpn
+```
+
+can help reveal which network services are listening.
+
+Together, these commands provide a basic view of a host's network exposure.
+
+---
+
+# 12. Troubleshooting Lesson
+
+During the practical, I also encountered network connectivity and DNS-resolution issues in my Linux environment.
+
+This helped me understand that networking problems can occur at different layers.
+
+For example:
+
+```text
+Application
+    ↓
+DNS resolution
+    ↓
+IP connectivity
+    ↓
+Routing
+    ↓
+Network interface
+```
+
+A problem with DNS resolution is not necessarily the same as a problem with IP connectivity.
+
+This reinforced the importance of troubleshooting networking problems systematically instead of assuming that every failure has the same cause.
+
+---
+
+# 13. Skills Demonstrated
+
+By completing this practical, I demonstrated the ability to:
+
+* Inspect Linux network interfaces
+* Identify IP addressing information
+* Identify MAC addresses
+* Identify the loopback interface
+* Inspect interface state
+* Read a Linux routing table
+* Identify a default gateway
+* Test loopback connectivity
+* Perform basic connectivity testing
+* Inspect listening network sockets
+* Connect network observations to cybersecurity
+
+---
+
+# 14. Commands Practiced
+
+```bash
+ip addr
+```
+
+```bash
+ip link
+```
+
+```bash
+ip route
+```
+
+```bash
+ping -c 4 127.0.0.1
+```
+
+```bash
+ping -c 4 <destination>
+```
+
+```bash
+ss -tuln
+```
+
+```bash
+ss -tulpn
+```
+
+---
+
+# 15. Key Lesson
+
+The main lesson from this practical is:
+
+> **Understand what is connected, how it communicates, what it exposes, and why.**
+
+Networking is not only about memorizing commands.
+
+The goal is to understand what the command output means and how that information can be used to investigate, monitor, troubleshoot, and secure systems.
+
+---
+
+# 16. Mission 2028 Progress
+
+**Mission:** CYBERSECURITY MISSION 2028
+
+**Stage:** Networking Basics
+
+**Practical:** Network Fundamentals
+
+**Status:** Completed
+
+**Date:** September 21, 2026
+
+This practical provides a foundation for future work in:
+
+* Network Security
+* Wireshark and Traffic Analysis
+* SOC / Blue Team
+* Incident Response
+* Ethical Hacking
+* Vulnerability Management
+* Cloud Security
+* Security Engineering
