@@ -1,6 +1,6 @@
-Subnetting Fundamentals
+# Subnetting Fundamentals
 
-Overview
+## Overview
 
 Subnetting is the process of dividing an IP network into smaller logical networks called subnets.
 
@@ -8,7 +8,7 @@ It is an important networking concept and a foundational cybersecurity skill bec
 
 ---
 
-1. What Is Subnetting?
+# 1. What Is Subnetting?
 
 Subnetting divides a larger IP network into smaller networks.
 
@@ -18,7 +18,7 @@ For example:
 
 can be divided into smaller subnets.
 
-Each subnet has its own:
+Each subnet has:
 
 - Network address
 - Usable host range
@@ -27,201 +27,154 @@ Each subnet has its own:
 
 ---
 
-2. CIDR Prefix
+# 2. CIDR Prefix
 
-CIDR stands for Classless Inter-Domain Routing.
+CIDR stands for **Classless Inter-Domain Routing**.
 
-The number after the "/" indicates how many bits of the IPv4 address are used for the network portion.
+The number after `/` indicates how many bits of an IPv4 address are used for the network portion.
 
 For example:
 
 192.168.10.0/24
 
-means:
+This means:
 
-Network bits: 24
-Host bits:     8
+Network bits = 24  
+Host bits = 32 - 24  
+Host bits = 8
 
-IPv4 addresses contain 32 bits.
+Total addresses:
 
-Therefore:
+2^8 = 256
 
-32 - 24 = 8 host bits
+Usable host addresses:
 
-The number of addresses is:
+256 - 2 = 254
 
-2^8 = 256 addresses
-
-For a normal IPv4 subnet, two addresses are reserved:
-
-- Network address
-- Broadcast address
-
-Therefore:
-
-256 - 2 = 254 usable host addresses
+The two reserved addresses are the network address and broadcast address.
 
 ---
 
-3. Important Subnetting Terms
+# 3. Important Subnetting Terms
 
-Network Address
+## Network Address
 
-The network address identifies the subnet itself.
+The first address in a subnet. It identifies the subnet itself.
 
-Example:
+## Broadcast Address
 
-192.168.10.0/24
+The last address in a subnet. It is used to communicate with all hosts within that subnet.
 
-The network address is:
+## First Usable Address
 
-192.168.10.0
+The address immediately after the network address.
 
-Broadcast Address
-
-The broadcast address is used to communicate with all hosts on the subnet.
-
-For:
-
-192.168.10.0/24
-
-the broadcast address is:
-
-192.168.10.255
-
-First Usable Address
-
-The first address after the network address.
-
-192.168.10.1
-
-Last Usable Address
+## Last Usable Address
 
 The address immediately before the broadcast address.
 
-192.168.10.254
+## Usable Hosts
 
-Usable Hosts
+The number of addresses available for hosts within a subnet.
 
-For a normal IPv4 subnet:
+For most traditional IPv4 subnets:
 
 Usable hosts = Total addresses - 2
 
 ---
 
-4. Why Subnetting Matters in Cybersecurity
+# 4. Host Bits and Network Bits
 
-Subnetting is not just an academic networking exercise.
+An IPv4 address contains **32 bits**.
 
-Cybersecurity engineers use subnetting when designing and analyzing networks.
+The CIDR prefix determines how many bits belong to the network.
 
-A network can be separated into different security zones:
+For example:
 
-Internet
-   |
-Firewall
-   |
-   +---- Web Server Network
-   |
-   +---- Application Network
-   |
-   +---- Database Network
-   |
-   +---- Management Network
+/20
 
-Separating systems into different networks can help security controls be applied between those networks.
+means:
 
-Subnetting is therefore related to:
+Network bits = 20  
+Host bits = 12
+
+Therefore:
+
+2^12 = 4096 total addresses
+
+and:
+
+4096 - 2 = 4094 usable hosts
+
+---
+
+# 5. Why Subnetting Matters in Cybersecurity
+
+Subnetting helps cybersecurity engineers understand network structure and boundaries.
+
+It can be used when working with:
 
 - Network segmentation
-- Access control
 - Firewall rules
-- Attack-surface reduction
-- Incident containment
-- Security architecture
+- Access-control policies
+- Security zones
+- Network monitoring
+- Traffic analysis
+- Incident response
+- Vulnerability assessment
+- Network reconnaissance
+
+For example, an organization may separate servers, employees, security monitoring systems, and other devices into different subnets.
+
+This can help control which systems are allowed to communicate with each other.
 
 ---
 
-5. Security Scenario
+# 6. Security Scenario
 
-Imagine an organization has:
+Consider an organization with separate network segments:
 
-192.168.10.0/24
+- Web Servers
+- Database Servers
+- Employee Systems
+- Security Monitoring
 
-and contains:
+Subnetting can be used to place these systems into different network ranges.
 
-Web servers
-Employee computers
-Database servers
-Security monitoring systems
-
-Instead of placing everything into one large network, a security engineer could create separate network segments.
-
-For example:
-
-192.168.10.0/26      Web Servers
-192.168.10.64/26     Employee Computers
-192.168.10.128/26    Database Servers
-192.168.10.192/26    Security Monitoring
-
-Traffic between these networks can then be controlled using security mechanisms such as firewalls and access-control lists.
-
-For example:
-
-Employee Network
-       |
-       | HTTPS
-       v
-Web Server Network
-       |
-       | Database traffic
-       v
-Database Network
-
-The database network does not necessarily need to accept connections directly from every employee computer.
+Security controls such as firewalls and access-control rules can then be configured according to the organization's network design.
 
 ---
 
-6. Cybersecurity Connection
+# 7. Cybersecurity Connection
 
-Subnetting helps a cybersecurity engineer understand:
+Understanding subnetting is important for cybersecurity because security engineers need to understand where systems exist within a network.
 
-- Where systems are located on a network
-- Which systems belong to the same network
-- Where network boundaries exist
-- How firewall rules can be designed
-- How access-control rules can be applied
-- How network traffic can be analyzed
-- How compromised systems can potentially be isolated
-
-Subnetting provides an important foundation for:
+Subnetting knowledge supports:
 
 - Network security
-- SOC operations
+- Firewall configuration
+- SOC monitoring
+- Traffic analysis
 - Incident response
+- Vulnerability management
 - Penetration testing
-- Vulnerability assessment
-- Cloud security
-- Security engineering
+- Network reconnaissance
+- Security architecture
+
+A cybersecurity engineer should be able to identify the network, host range, and broadcast address from an IPv4 address and CIDR prefix.
 
 ---
 
-7. Practical Application
+# Key Takeaway
 
-In this lab, I applied subnetting concepts to a real Kali Linux networking environment.
+Subnetting divides networks into smaller logical networks.
 
-The IPv4 configuration identified was:
+The most important skills are being able to determine:
 
-IPv4 address: 172.18.38.94/20
+- Network Address
+- Broadcast Address
+- First Usable Address
+- Last Usable Address
+- Number of Usable Hosts
 
-The subnet was:
-
-172.18.32.0/20
-
-This demonstrates how theoretical subnetting knowledge can be applied to identify the network boundaries of an actual system.
-
----
-
-Key Takeaway
-
-«Subnetting helps cybersecurity engineers understand and create network boundaries that can be used to enforce security controls.»
+These skills form an important foundation for practical networking and cybersecurity engineering.
