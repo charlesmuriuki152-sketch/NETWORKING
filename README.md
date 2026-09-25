@@ -1,88 +1,43 @@
 # Networking Fundamentals and Cybersecurity
 
-A practical learning repository covering networking fundamentals, Linux networking commands, hands-on labs, Packet Tracer exercises, and cybersecurity-focused networking projects.
+A practical learning repository covering networking fundamentals, Linux networking commands, hands-on labs, Cisco Packet Tracer exercises, and cybersecurity-focused networking projects.
 
 ## Purpose
 
-This repository documents my progress in networking as part of my **Cybersecurity Mission 2028**. It combines theoretical concepts with practical Linux-based investigations and future network simulation exercises.
+This repository documents my progress in networking as part of my **Cybersecurity Mission 2028**. It combines theoretical concepts with practical Linux-based investigations, subnetting exercises, and Cisco Packet Tracer labs.
 
 ## Learning Objectives
 
-- Understand the purpose of computer networks and communication protocols
-- Explain the difference between IP addresses and MAC addresses
-- Identify and inspect Linux network interfaces
-- Read routing tables and identify default gateways
-- Test local and remote network connectivity
-- Understand ports, sockets, and listening services
+- Understand computer networks and communication protocols
+- Explain IP addressing, MAC addresses, routing, and network interfaces
+- Practice subnetting and connectivity testing
+- Build and inspect Cisco Packet Tracer topologies
+- Configure basic network security controls
 - Connect networking concepts to cybersecurity operations
-- Build a foundation for traffic analysis, incident response, and network security
 
 ## Repository Contents
 
 | Resource | Description |
 | --- | --- |
-| [Networking Basics](./Networking-Basics) | Detailed notes covering networks, IP and MAC addresses, interfaces, gateways, loopback, routing, ports, and listening services |
+| [Networking Basics](./Networking-Basics) | Notes covering networks, IP and MAC addresses, interfaces, gateways, routing, ports, and listening services |
 | [Networking Fundamentals Lab](./NETWORKING%20FUNDAMENTALS%20LAB) | Practical Linux lab documenting commands, observations, troubleshooting, and cybersecurity connections |
+| [Networking Labs](./Networking%20Labs) | Practical networking exercises, including subnetting and Cisco Packet Tracer |
+| [Cisco Packet Tracer Labs](./Networking%20Labs/Packet-Tracer) | Packet Tracer topology, network-security, and future wireless configuration labs |
 
 ## Topics Covered
 
 - Computer networks
 - IPv4 and IPv6 addressing
-- MAC addresses
-- Network interfaces
-- Loopback communication
-- Routing tables
-- Default gateways
-- Network ports
-- TCP and UDP sockets
-- Listening services
+- MAC addresses and network interfaces
+- Routing tables and default gateways
+- Subnetting
+- Network ports and TCP/UDP sockets
+- Cisco Packet Tracer topology design
+- Network device security and segmentation
 - Basic connectivity testing
 - Network visibility and attack-surface analysis
 
-## Linux Commands Practiced
-
-```bash
-ip addr
-ip link
-ip route
-ping -c 4 127.0.0.1
-ping -c 4 <destination>
-ss -tuln
-ss -tulpn
-```
-
-## Cybersecurity Relevance
-
-Networking knowledge supports:
-
-- Security monitoring
-- Network reconnaissance in authorized environments
-- Traffic analysis
-- Incident response
-- Firewall configuration
-- Attack-surface analysis
-- Vulnerability assessment
-- Network segmentation
-- Security engineering
-
-A key principle from this stage is:
-
-> Understand what is connected, how it communicates, what it exposes, and why.
-
-## Progress
-
-- [x] Networking fundamentals
-- [x] Linux interface inspection
-- [x] IP and MAC address identification
-- [x] Routing and default-gateway inspection
-- [x] Loopback connectivity testing
-- [x] Basic network connectivity testing
-- [x] Listening-port inspection
-- [ ] Packet Tracer exercises
-- [ ] Wireshark traffic analysis
-- [ ] Network security projects
-
-## Environment and Tools
+## Tools
 
 - Kali Linux
 - Linux terminal
@@ -91,30 +46,23 @@ A key principle from this stage is:
 - `ping`
 - `ss`
 
-## Documentation Standards
+## Progress
 
-Each practical exercise aims to record:
+- [x] Networking fundamentals
+- [x] Linux interface inspection
+- [x] IP and MAC address identification
+- [x] Routing and default-gateway inspection
+- [x] Subnetting exercises
+- [x] Basic connectivity testing
+- [x] Listening-port inspection
+- [x] Packet Tracer exercises
+- [ ] Wireshark traffic analysis
+- [ ] Advanced wireless security
+- [ ] Network security projects
 
-1. The objective
-2. The environment and tools used
-3. Commands executed
-4. Observed results
-5. Interpretation of the results
-6. Troubleshooting lessons
-7. Cybersecurity relevance
-8. Skills developed
+## Cybersecurity Relevance
 
-## Learning Path
-
-This repository provides a foundation for future work in:
-
-- Wireshark and traffic analysis
-- SOC and blue-team operations
-- Incident response
-- Ethical hacking
-- Vulnerability management
-- Cloud security
-- Security engineering
+Networking knowledge supports security monitoring, authorized reconnaissance, traffic analysis, incident response, firewall configuration, access-control design, network segmentation, and security engineering.
 
 ## License
 
