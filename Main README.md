@@ -52,3 +52,6 @@ Networking knowledge supports security monitoring, authorized reconnaissance, tr
 
 License
 This project is licensed under the MIT License.
+## 🏆 Networking Basics Certificate
+
+[📄 View or Download My Certificate](./NETWORKING%20BASICS%20CERTIFICATE.pdf)
